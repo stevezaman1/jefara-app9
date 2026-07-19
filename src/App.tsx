@@ -692,6 +692,7 @@ export default function App() {
           }
           setProfile(parsedProfile);
           setCompany(JSON.parse(storedCompany));
+          setShowLanding(false);
           setLoading(false);
           return;
         }
@@ -721,6 +722,7 @@ export default function App() {
             const compDoc = await getDoc(doc(db, 'companies', userProfile.companyId));
             if (compDoc.exists()) {
               setCompany(compDoc.data() as Company);
+              setShowLanding(false);
             }
           }
         } catch (err) {
@@ -1350,7 +1352,7 @@ export default function App() {
                 <Logo size={20} className="text-white" />
               </div>
               <div className="text-left leading-none">
-                <h1 className="font-display font-bold text-sm text-zinc-900">Jefara</h1>
+                <h1 className="font-display font-bold text-sm text-[#7c3aed]">Jefara</h1>
               </div>
             </div>
 
@@ -1783,16 +1785,44 @@ export default function App() {
         </div>
       )}
 
-      {/* Mobile Burger Button - Floating in the top left corner */}
-      {!mobileMenuOpen && (
+      {/* Mobile Sticky Top Header Bar */}
+      <header className="md:hidden shrink-0 h-16 bg-white border-b border-zinc-200/85 flex items-center justify-between px-4 sticky top-0 z-40 w-full shadow-xs">
+        {/* Left Side: Burger Button */}
         <button 
           onClick={() => setMobileMenuOpen(true)}
-          className="md:hidden fixed top-4 left-4 z-50 p-2.5 bg-white border border-zinc-200 hover:bg-zinc-50 rounded-xl shadow-md text-zinc-600 transition-all active:scale-95 cursor-pointer flex items-center justify-center animate-fade-in"
+          className="p-2 bg-zinc-50 border border-zinc-200 hover:bg-zinc-100 rounded-xl text-zinc-600 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
           title="Open Sidebar"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-4.5 w-4.5" />
         </button>
-      )}
+
+        {/* Middle: Centered Logo + Text */}
+        <div 
+          className="flex items-center gap-2 cursor-pointer" 
+          onClick={() => handleGoHome()}
+        >
+          <div className="h-7 w-7 rounded-lg bg-[#7c3aed] text-white flex items-center justify-center p-1 shadow-xs">
+            <Logo size={14} className="text-white" />
+          </div>
+          <span className="font-display font-bold text-sm text-[#7c3aed] tracking-tight">Jefara</span>
+        </div>
+
+        {/* Right Side: Profile icon button */}
+        {profile && (
+          <button
+            onClick={() => setActiveProfileModal('profile')}
+            className="h-8 w-8 rounded-full text-white flex items-center justify-center font-bold text-[10px] border border-zinc-200 overflow-hidden relative"
+            style={{ backgroundColor: profile.avatarColor || 'var(--theme-primary)' }}
+            title="Mon Profil"
+          >
+            {profile.photoUrl ? (
+              <img src={profile.photoUrl} alt={profile.displayName} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+            ) : (
+              profile.displayName[0].toUpperCase()
+            )}
+          </button>
+        )}
+      </header>
 
       {/* Outer container holding Sidebar and Main view area */}
       <div className="flex-1 flex flex-row overflow-hidden relative w-full">
@@ -2448,7 +2478,7 @@ export default function App() {
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Spacer to align main workspace with beginning of sidebar navigation */}
-                <div className="h-[118px] shrink-0" />
+                <div className="h-6 md:h-[118px] shrink-0" />
 
                 {tabLoading ? (
                   <div className="w-full flex flex-col justify-center items-center py-24 px-6 space-y-6 bg-white border border-zinc-100 rounded-3xl min-h-[450px]">

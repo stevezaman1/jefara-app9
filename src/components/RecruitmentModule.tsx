@@ -225,7 +225,7 @@ export default function RecruitmentModule({ company, jobPostings, jobApplication
                   </button>
                 </div>
               ) : (
-                <div className="bg-white border border-zinc-100 rounded-[32px] overflow-hidden shadow-xs">
+                <div className="bg-white border border-zinc-100 rounded-[32px] overflow-x-auto shadow-xs">
                   <table className="w-full text-left text-xs">
                     <thead>
                       <tr className="bg-zinc-50/50 border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">

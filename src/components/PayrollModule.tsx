@@ -575,7 +575,7 @@ export default function PayrollModule({
                 </div>
               ) : (
                 /* CONVERT CYCLES TO TABLE VIEW FOR RICH METRIC ANALYSIS */
-                <div className="bg-white border border-zinc-100 rounded-[32px] overflow-hidden shadow-xs">
+                <div className="bg-white border border-zinc-100 rounded-[32px] overflow-x-auto shadow-xs">
                   <table className="w-full text-left text-xs">
                     <thead>
                       <tr className="bg-zinc-50 border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
@@ -691,7 +691,7 @@ export default function PayrollModule({
                 {runPayslips.length === 0 ? (
                   <p className="text-xs text-zinc-400 italic">Chargement en cours...</p>
                 ) : (
-                  <div className="bg-white border border-zinc-100 rounded-[32px] overflow-hidden shadow-xs">
+                  <div className="bg-white border border-zinc-100 rounded-[32px] overflow-x-auto shadow-xs">
                     <table className="w-full text-left text-xs">
                       <thead>
                         <tr className="bg-zinc-50 border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">

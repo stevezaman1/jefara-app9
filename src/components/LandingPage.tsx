@@ -507,7 +507,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
               <div className="h-9 w-9 bg-violet-600 text-white rounded-lg flex items-center justify-center font-display font-black tracking-tight shadow-md shadow-violet-600/25">
                 J
               </div>
-              <span className="font-display font-extrabold text-base tracking-tight text-slate-900">Jefara</span>
+              <span className="font-display font-extrabold text-base tracking-tight text-[#7c3aed]">Jefara</span>
             </div>
             <div className="flex items-center space-x-3">
               <span className="text-[10px] font-mono font-bold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-full border border-violet-100 uppercase tracking-wider flex items-center gap-1">
@@ -691,7 +691,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
                 <Logo size={22} className="text-white" />
               </div>
               <div className="flex-shrink-0">
-                <span className="font-display font-black text-lg sm:text-xl md:text-2xl tracking-tight text-slate-900">Jefara</span>
+                <span className="font-display font-black text-lg sm:text-xl md:text-2xl tracking-tight text-[#7c3aed]">Jefara</span>
               </div>
             </button>
           </div>
@@ -829,7 +829,9 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
       {!showProductTour ? (
         <>
           {/* Hero Section */}
-          <section className="relative w-full bg-gradient-to-b from-violet-100/45 via-violet-50/20 to-transparent pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-8">
+          <section className="relative w-full bg-white pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+            {/* Ambient background gradient that stops at text level */}
+            <div className="absolute top-0 left-0 right-0 h-[400px] md:h-[460px] bg-gradient-to-b from-violet-100 via-violet-50/40 to-transparent pointer-events-none -z-10" />
             <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
               {/* Soft ambient violet glow at the bottom of the hero ground */}
               <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-violet-200/35 blur-[120px] pointer-events-none rounded-full -z-10" />
@@ -886,7 +888,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           className="w-full max-w-5xl mt-14 md:mt-18"
         >
-          <div className="w-full bg-violet-950 rounded-xl border border-violet-900/60 shadow-xl overflow-hidden text-left flex flex-col h-[820px] sm:h-[680px] md:h-[600px] lg:h-[580px]">
+          <div className="w-full bg-violet-950 rounded-xl border border-violet-900/60 shadow-xl overflow-hidden text-left flex flex-col h-[540px] sm:h-[600px] md:h-[600px] lg:h-[580px]">
             
             {/* Top Chrome Window Header */}
             <div className="bg-slate-50 border-b border-slate-100 px-4 py-3 flex items-center justify-between relative">
@@ -951,7 +953,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
             </div>
 
             {/* Simulated Live Product Dashboard layout */}
-            <div className="flex-1 p-6 md:p-8 bg-slate-50 relative overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex-1 p-6 md:p-8 bg-slate-50 relative overflow-y-auto">
               <AnimatePresence mode="wait">
                 {mockupTab === 'payroll' && (
                   <motion.div
@@ -1052,7 +1054,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
                         
                         {/* Interactive Table with headers */}
                         <div className="overflow-x-auto">
-                          <table className="min-w-full text-xs text-left">
+                          <table className="min-w-[550px] text-xs text-left">
                             <thead>
                               <tr className="border-b border-violet-100/80 bg-violet-50/20 text-[10px] font-mono text-violet-700 font-bold uppercase">
                                 <th className="py-2.5 px-4 font-semibold">Employee Details</th>
@@ -1094,7 +1096,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
                                     </td>
                                     <td className="py-3 px-4">
                                       <div className="space-y-0.5">
-                                        <span className="inline-block text-[9px] bg-slate-100 border border-slate-200/40 text-slate-600 px-1.5 py-0.5 rounded font-mono font-bold leading-none">{person.type}</span>
+                                        <span className="inline-block text-[9px] bg-violet-50 border border-violet-200 text-violet-700 px-1.5 py-0.5 rounded font-mono font-bold leading-none">{person.type}</span>
                                         <span className="block text-[9px] text-slate-600 font-medium">{person.loc}</span>
                                       </div>
                                     </td>
@@ -1830,25 +1832,27 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
                           <span className="text-xs font-bold text-white">Digital Personnel Files</span>
                           <span className="text-[9px] font-mono text-violet-300">Contracts active</span>
                         </div>
-                        <div className="space-y-2">
-                          {[
-                            { name: "Marie-Louise Ndongo", role: "Sales Specialist", type: "CDI", start: "Recent Cycle", pct: "Full Time" },
-                            { name: "Guy-Alain Bedimo", role: "Network Architect", type: "CDD (Temp)", start: "Active Cycle", pct: "Part Time" }
-                          ].map((emp, i) => (
-                            <div key={i} className="flex items-center justify-between p-3 bg-violet-900/45 hover:bg-violet-900/60 rounded border border-violet-800/40 text-xs">
-                              <div className="flex items-center gap-2.5">
-                                <div className="h-7 w-7 rounded-full bg-violet-800 text-violet-200 flex items-center justify-center font-bold text-xs">{emp.name[0]}</div>
-                                <div>
-                                  <span className="font-bold text-white block">{emp.name}</span>
-                                  <span className="text-[10px] text-violet-300">{emp.role} • Joined {emp.start}</span>
+                        <div className="overflow-x-auto">
+                          <div className="space-y-2 min-w-[340px] sm:min-w-0">
+                            {[
+                              { name: "Marie-Louise Ndongo", role: "Sales Specialist", type: "CDI", start: "Recent Cycle", pct: "Full Time" },
+                              { name: "Guy-Alain Bedimo", role: "Network Architect", type: "CDD (Temps)", start: "Active Cycle", pct: "Part Time" }
+                            ].map((emp, i) => (
+                              <div key={i} className="flex items-center justify-between p-3 bg-violet-900/45 hover:bg-violet-900/60 rounded border border-violet-800/40 text-xs">
+                                <div className="flex items-center gap-2.5">
+                                  <div className="h-7 w-7 rounded-full bg-violet-850 text-violet-200 border border-violet-700/30 flex items-center justify-center font-bold text-xs shrink-0">{emp.name[0]}</div>
+                                  <div>
+                                    <span className="font-bold text-white block">{emp.name}</span>
+                                    <span className="text-[10px] text-violet-300">{emp.role} • Joined {emp.start}</span>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-3 shrink-0">
+                                  <span className="text-[10px] bg-violet-100 text-violet-800 border border-violet-300 px-2 py-0.5 rounded font-bold">{emp.type}</span>
+                                  <span className="font-mono font-bold text-violet-200">{emp.pct}</span>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-3">
-                                <span className="text-[10px] bg-violet-950/40 border border-violet-800 px-2 py-0.5 rounded font-bold text-violet-300">{emp.type}</span>
-                                <span className="font-mono font-bold text-violet-200">{emp.pct}</span>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -1860,23 +1864,25 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
                           <span className="text-xs font-bold text-white">Earned Wage Liquidity Terminal</span>
                           <span className="text-[9px] text-violet-300 font-bold bg-violet-900/50 px-2 py-0.5 rounded font-mono border border-violet-850/50">ORANGE MONEY / MOMO SYNC</span>
                         </div>
-                        <div className="space-y-2 bg-violet-900/45 p-3.5 rounded-xl border border-violet-800/40 text-xs">
-                          <div className="flex justify-between items-center border-b border-violet-800/50 pb-1.5 font-bold text-[10px] text-violet-300 uppercase tracking-wider">
-                            <span>Accrued Period</span>
-                            <span>Eligible Advance</span>
-                            <span>Disbursed</span>
-                          </div>
-                          {[
-                            { period: "Initial Cycle Accrued", eligible: "Standard Limit Authorized", disbursed: "Instant Mobile Pay" },
-                            { period: "Mid Cycle Accrued", eligible: "Elevated Limit Authorized", disbursed: "Instant Mobile Pay" },
-                            { period: "End Cycle Accrued", eligible: "Maximum Limit Authorized", disbursed: "Instant Mobile Pay" }
-                          ].map((item, idx) => (
-                            <div key={idx} className="flex justify-between items-center py-1 text-violet-100">
-                              <span className="font-medium text-[11px]">{item.period}</span>
-                              <span className="font-mono font-bold text-violet-100 text-[11px] bg-violet-950/40 border border-violet-800 px-1.5 py-0.5 rounded">{item.eligible}</span>
-                              <span className="text-[10px] font-mono text-indigo-300 bg-indigo-950/45 border border-indigo-900/50 px-1.5 py-0.5 rounded font-bold">✓ {item.disbursed}</span>
+                        <div className="overflow-x-auto">
+                          <div className="space-y-2 bg-violet-900/45 p-3.5 rounded-xl border border-violet-800/40 text-xs min-w-[450px] sm:min-w-0">
+                            <div className="flex justify-between items-center border-b border-violet-800/50 pb-1.5 font-bold text-[10px] text-violet-300 uppercase tracking-wider">
+                              <span>Accrued Period</span>
+                              <span>Eligible Advance</span>
+                              <span>Disbursed</span>
                             </div>
-                          ))}
+                            {[
+                              { period: "Initial Cycle Accrued", eligible: "Standard Limit Authorized", disbursed: "Instant Mobile Pay" },
+                              { period: "Mid Cycle Accrued", eligible: "Elevated Limit Authorized", disbursed: "Instant Mobile Pay" },
+                              { period: "End Cycle Accrued", eligible: "Maximum Limit Authorized", disbursed: "Instant Mobile Pay" }
+                            ].map((item, idx) => (
+                              <div key={idx} className="flex justify-between items-center py-1 text-violet-100">
+                                <span className="font-medium text-[11px]">{item.period}</span>
+                                <span className="font-mono font-bold text-violet-100 text-[11px] bg-violet-950/40 border border-violet-800 px-1.5 py-0.5 rounded">{item.eligible}</span>
+                                <span className="text-[10px] font-mono text-indigo-300 bg-indigo-950/45 border border-indigo-900/50 px-1.5 py-0.5 rounded font-bold">✓ {item.disbursed}</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                         <div className="text-[10px] text-violet-300 bg-violet-900/30 p-2.5 rounded border border-violet-800/30 font-semibold leading-normal">
                           💡 Employees draw down interest-free funds automatically reconciled with month-end payroll deduction.
@@ -2546,7 +2552,7 @@ export default function LandingPage({ onGetStarted, onSignIn, onLaunchDemo, onSa
               <div className="h-8 w-8 rounded-lg bg-[#7c3aed] text-white flex items-center justify-center shadow-sm">
                 <Logo size={16} className="text-white" />
               </div>
-              <span className="font-display font-extrabold text-base tracking-tight text-slate-900">Jefara</span>
+              <span className="font-display font-extrabold text-base tracking-tight text-[#7c3aed]">Jefara</span>
             </div>
             <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-xs">
               Jefara is the leading premium HR and Payroll platform designed natively for Central and West African enterprises operating within OHADA legal matrices.
