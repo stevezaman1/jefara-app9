@@ -1,0 +1,783 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Force rounded utility mappings to adopt the clean PayFit slightly rounded rectangular aesthetic */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 6px;
+  --radius-xl: 6px;
+  --radius-2xl: 6px;
+  --radius-3xl: 6px;
+  --radius-full: 9999px;
+
+  /* Enforce extremely subtle shadows across all shadow sizes */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.015);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.015), 0 1px 2px -1px rgba(0, 0, 0, 0.015);
+  --shadow-lg: 0 1px 4px 0 rgba(0, 0, 0, 0.015), 0 1px 2px -1px rgba(0, 0, 0, 0.015);
+  --shadow-xl: 0 1px 5px 0 rgba(0, 0, 0, 0.02), 0 1px 3px -1px rgba(0, 0, 0, 0.02);
+  --shadow-2xl: 0 1px 6px 0 rgba(0, 0, 0, 0.02), 0 1px 4px -1px rgba(0, 0, 0, 0.02);
+
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-300: #c084fc;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-800: #5b21b6;
+  --color-violet-900: #4c1d95;
+  --color-violet-950: #2e1065;
+
+  /* Map other accent hues to the Jefara premium purple/violet shades to strictly maintain color rules */
+  --color-indigo-50: var(--color-violet-50);
+  --color-indigo-100: var(--color-violet-100);
+  --color-indigo-200: var(--color-violet-200);
+  --color-indigo-300: var(--color-violet-300);
+  --color-indigo-400: var(--color-violet-400);
+  --color-indigo-500: var(--color-violet-500);
+  --color-indigo-600: var(--color-violet-600);
+  --color-indigo-700: var(--color-violet-700);
+  --color-indigo-800: var(--color-violet-800);
+  --color-indigo-900: var(--color-violet-900);
+  --color-indigo-950: var(--color-violet-950);
+
+  --color-blue-50: var(--color-violet-50);
+  --color-blue-100: var(--color-violet-100);
+  --color-blue-200: var(--color-violet-200);
+  --color-blue-300: var(--color-violet-300);
+  --color-blue-400: var(--color-violet-400);
+  --color-blue-500: var(--color-violet-500);
+  --color-blue-600: var(--color-violet-600);
+  --color-blue-700: var(--color-violet-700);
+  --color-blue-800: var(--color-violet-800);
+  --color-blue-900: var(--color-violet-900);
+  --color-blue-950: var(--color-violet-950);
+
+  --color-emerald-50: var(--color-violet-50);
+  --color-emerald-100: var(--color-violet-100);
+  --color-emerald-200: var(--color-violet-200);
+  --color-emerald-300: var(--color-violet-300);
+  --color-emerald-400: var(--color-violet-400);
+  --color-emerald-500: var(--color-violet-500);
+  --color-emerald-600: var(--color-violet-600);
+  --color-emerald-700: var(--color-violet-700);
+  --color-emerald-800: var(--color-violet-800);
+  --color-emerald-900: var(--color-violet-900);
+  --color-emerald-950: var(--color-violet-950);
+
+  --color-green-50: var(--color-violet-50);
+  --color-green-100: var(--color-violet-100);
+  --color-green-200: var(--color-violet-200);
+  --color-green-300: var(--color-violet-300);
+  --color-green-400: var(--color-violet-400);
+  --color-green-500: var(--color-violet-500);
+  --color-green-600: var(--color-violet-600);
+  --color-green-700: var(--color-violet-700);
+  --color-green-800: var(--color-violet-800);
+  --color-green-900: var(--color-violet-900);
+  --color-green-950: var(--color-violet-950);
+
+  --color-teal-50: var(--color-violet-50);
+  --color-teal-100: var(--color-violet-100);
+  --color-teal-200: var(--color-violet-200);
+  --color-teal-300: var(--color-violet-300);
+  --color-teal-400: var(--color-violet-400);
+  --color-teal-500: var(--color-violet-500);
+  --color-teal-600: var(--color-violet-600);
+  --color-teal-700: var(--color-violet-700);
+  --color-teal-800: var(--color-violet-800);
+  --color-teal-900: var(--color-violet-900);
+  --color-teal-950: var(--color-violet-950);
+
+  --color-cyan-50: var(--color-violet-50);
+  --color-cyan-100: var(--color-violet-100);
+  --color-cyan-200: var(--color-violet-200);
+  --color-cyan-300: var(--color-violet-300);
+  --color-cyan-400: var(--color-violet-400);
+  --color-cyan-500: var(--color-violet-500);
+  --color-cyan-600: var(--color-violet-600);
+  --color-cyan-700: var(--color-violet-700);
+  --color-cyan-800: var(--color-violet-800);
+  --color-cyan-900: var(--color-violet-900);
+  --color-cyan-950: var(--color-violet-950);
+
+  /* Map warnings/errors/destructives to clean premium neutral grays/slates as per guidelines */
+  --color-red-50: #f8fafc;
+  --color-red-100: #f1f5f9;
+  --color-red-200: #e2e8f0;
+  --color-red-300: #cbd5e1;
+  --color-red-400: #94a3b8;
+  --color-red-500: #475569;
+  --color-red-600: #334155;
+  --color-red-700: #1e293b;
+  --color-red-800: #0f172a;
+  --color-red-900: #020617;
+  --color-red-950: #000000;
+
+  --color-rose-50: var(--color-red-50);
+  --color-rose-100: var(--color-red-100);
+  --color-rose-200: var(--color-red-200);
+  --color-rose-300: var(--color-red-300);
+  --color-rose-400: var(--color-red-400);
+  --color-rose-500: var(--color-red-500);
+  --color-rose-600: var(--color-red-600);
+  --color-rose-700: var(--color-red-700);
+  --color-rose-800: var(--color-red-800);
+  --color-rose-900: var(--color-red-900);
+  --color-rose-950: var(--color-red-950);
+
+  --color-pink-50: var(--color-red-50);
+  --color-pink-100: var(--color-red-100);
+  --color-pink-200: var(--color-red-200);
+  --color-pink-300: var(--color-red-300);
+  --color-pink-400: var(--color-red-400);
+  --color-pink-500: var(--color-red-500);
+  --color-pink-600: var(--color-red-600);
+  --color-pink-700: var(--color-red-700);
+  --color-pink-800: var(--color-red-800);
+  --color-pink-900: var(--color-red-900);
+  --color-pink-950: var(--color-red-950);
+
+  --color-amber-50: var(--color-violet-50);
+  --color-amber-100: var(--color-violet-100);
+  --color-amber-200: var(--color-violet-200);
+  --color-amber-300: var(--color-violet-300);
+  --color-amber-400: var(--color-violet-400);
+  --color-amber-500: var(--color-violet-500);
+  --color-amber-600: var(--color-violet-600);
+  --color-amber-700: var(--color-violet-700);
+  --color-amber-800: var(--color-violet-800);
+  --color-amber-900: var(--color-violet-900);
+  --color-amber-950: var(--color-violet-950);
+
+  --color-yellow-50: var(--color-violet-50);
+  --color-yellow-100: var(--color-violet-100);
+  --color-yellow-200: var(--color-violet-200);
+  --color-yellow-300: var(--color-violet-300);
+  --color-yellow-400: var(--color-violet-400);
+  --color-yellow-500: var(--color-violet-500);
+  --color-yellow-600: var(--color-violet-600);
+  --color-yellow-700: var(--color-violet-700);
+  --color-yellow-800: var(--color-violet-800);
+  --color-yellow-900: var(--color-violet-900);
+  --color-yellow-950: var(--color-violet-950);
+
+  --color-orange-50: var(--color-violet-50);
+  --color-orange-100: var(--color-violet-100);
+  --color-orange-200: var(--color-violet-200);
+  --color-orange-300: var(--color-violet-300);
+  --color-orange-400: var(--color-violet-400);
+  --color-orange-500: var(--color-violet-500);
+  --color-orange-600: var(--color-violet-600);
+  --color-orange-700: var(--color-violet-700);
+  --color-orange-800: var(--color-violet-800);
+  --color-orange-900: var(--color-violet-900);
+  --color-orange-950: var(--color-violet-950);
+}
+
+/* Base Light Mode variables */
+:root {
+  --color-bg-base: #ffffff; /* pure white background */
+  --color-bg-card: #f8fafc; /* slate-50 background tint for cards */
+  --color-border-card: transparent; /* transparent */
+  --color-sidebar-bg: #f9f8fe; /* extremely subtle, soft purple-tinted background */
+  --color-sidebar-border: transparent; /* transparent */
+  --color-text-main: #0f172a; /* slate-900 */
+  --color-text-sub: #64748b; /* slate-500 */
+  --color-input-bg: #ffffff; /* white input background */
+  --color-input-border: #e2e8f0; /* thin slate-200 border */
+
+  /* Jefara Violet theme (default) */
+  --theme-primary: #7c3aed; /* violet-600 */
+  --theme-primary-hover: #6d28d9; /* violet-700 */
+  --theme-primary-light: #f5f3ff; /* violet-50 */
+  --theme-primary-light-dark: rgba(124, 58, 237, 0.12);
+  --theme-header-bg: #1e1b4b; /* deep indigo/violet hybrid for premium look */
+  --theme-header-border: #2e1065;
+  --theme-primary-darkest: #2e1065;
+  --theme-chart-1: #7c3aed;
+  --theme-chart-2: #c084fc;
+  --theme-nav-active-bg: var(--theme-primary-light);
+}
+
+/* Theme palette overrides */
+:root.theme-violet,
+:root.theme-midnight,
+:root.theme-emerald,
+:root.theme-graphite,
+:root.theme-burgundy {
+  --theme-primary: #7c3aed;
+  --theme-primary-hover: #6d28d9;
+  --theme-primary-light: #f5f3ff;
+  --theme-primary-light-dark: rgba(124, 58, 237, 0.12);
+  --theme-header-bg: #2e1065;
+  --theme-header-border: #4c1d95;
+  --theme-primary-darkest: #2e1065;
+  --theme-chart-1: #7c3aed;
+  --theme-chart-2: #c084fc;
+}
+
+/* Dark Mode Overrides */
+:root.dark {
+  --color-bg-base: #09090b; /* zinc-950 */
+  --color-bg-card: #141416; /* zinc-900 */
+  --color-border-card: transparent; /* transparent */
+  --color-sidebar-bg: #100f14; /* very subtle dark purple/zinc tint */
+  --color-sidebar-border: transparent; /* transparent */
+  --color-text-main: #f4f4f5; /* zinc-100 */
+  --color-text-sub: #a1a1aa; /* zinc-400 */
+  --color-input-bg: #0d0d0f; /* zinc-950 */
+  --color-input-border: #222226; /* zinc-800 */
+  --theme-nav-active-bg: var(--theme-primary-light-dark);
+}
+
+/* Force CSS variable themes on elements in Dark Mode */
+:root.dark .bg-white,
+:root.dark .bg-zinc-50,
+:root.dark .bg-zinc-50\/50,
+:root.dark .bg-zinc-100\/30,
+:root.dark .bg-white\/95 {
+  background-color: var(--color-bg-card) !important;
+}
+
+:root.dark .bg-zinc-50\/30,
+:root.dark .bg-zinc-100\/50 {
+  background-color: rgba(13, 13, 15, 0.5) !important;
+}
+
+:root.dark .text-zinc-950,
+:root.dark .text-zinc-900,
+:root.dark .text-zinc-800,
+:root.dark .text-zinc-700 {
+  color: var(--color-text-main) !important;
+}
+
+:root.dark .text-zinc-600,
+:root.dark .text-zinc-500 {
+  color: var(--color-text-sub) !important;
+}
+
+:root.dark .border-zinc-100,
+:root.dark .border-zinc-150,
+:root.dark .border-zinc-200,
+:root.dark .border-zinc-150\/80 {
+  border-color: var(--color-border-card) !important;
+}
+
+:root.dark input:not([type="checkbox"]):not([type="radio"]),
+:root.dark select,
+:root.dark textarea {
+  background-color: var(--color-input-bg) !important;
+  border-color: var(--color-input-border) !important;
+  color: var(--color-text-main) !important;
+}
+
+:root.dark input:focus:not([type="checkbox"]):not([type="radio"]),
+:root.dark select:focus,
+:root.dark textarea:focus {
+  border-color: var(--theme-primary) !important;
+}
+
+/* Light Mode Background Hierarchy Inversion (default, when not .dark) */
+:root:not(.dark) main .bg-white {
+  background-color: var(--color-bg-card) !important;
+}
+
+/* Keep inputs, selects, textareas, white buttons, and specific elements pure white for perfect contrast */
+:root:not(.dark) main input:not([type="checkbox"]):not([type="radio"]),
+:root:not(.dark) main select,
+:root:not(.dark) main textarea,
+:root:not(.dark) main button.bg-white,
+:root:not(.dark) main .keep-white,
+:root:not(.dark) main .bg-white.keep-white {
+  background-color: #ffffff !important;
+}
+
+/* Inside cards, sub-elements that were zinc-50 are now crisp pure white for premium nested hierarchy */
+:root:not(.dark) main .bg-zinc-50,
+:root:not(.dark) main .bg-zinc-50\/50,
+:root:not(.dark) main .bg-zinc-50\/70,
+:root:not(.dark) main .bg-zinc-100\/30,
+:root:not(.dark) main .bg-zinc-100\/40,
+:root:not(.dark) main .bg-zinc-100\/50 {
+  background-color: #ffffff !important;
+}
+
+/* Make card borders transparent in light mode */
+:root:not(.dark) main .border-zinc-100,
+:root:not(.dark) main .border-zinc-150,
+:root:not(.dark) main .border-zinc-200,
+:root:not(.dark) main .border-zinc-150\/80,
+:root:not(.dark) main .border,
+:root:not(.dark) main .border-slate-100,
+:root:not(.dark) main .border-slate-200,
+:root:not(.dark) main .border-t,
+:root:not(.dark) main .border-b,
+:root:not(.dark) main .border-l,
+:root:not(.dark) main .border-r {
+  border-color: transparent !important;
+}
+
+/* Class name overrides to dynamically match theme primary color */
+.text-violet-600, .text-violet-500, .text-indigo-600 {
+  color: var(--theme-primary) !important;
+}
+.bg-violet-600, .bg-violet-500, .bg-indigo-600 {
+  background-color: var(--theme-primary) !important;
+}
+.bg-violet-950 {
+  background-color: var(--theme-header-bg) !important;
+}
+.bg-violet-850 {
+  background-color: var(--theme-header-border) !important;
+}
+.border-violet-900 {
+  border-color: var(--theme-header-border) !important;
+}
+.bg-violet-50, .bg-violet-50\/80 {
+  background-color: var(--theme-nav-active-bg) !important;
+}
+.text-violet-200 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.hover\:text-violet-200:hover {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+.hover\:bg-violet-900\/60:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.hover\:bg-violet-900:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+.border-violet-600, .border-violet-500 {
+  border-color: var(--theme-primary) !important;
+}
+.hover\:bg-violet-700:hover {
+  background-color: var(--theme-primary-hover) !important;
+}
+.text-violet-700 {
+  color: var(--theme-primary-hover) !important;
+}
+.focus\:ring-violet-500:focus {
+  --tw-ring-color: var(--theme-primary) !important;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+:root.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+:root.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Glassmorphic card overlay for iOS 26 style */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel-dark {
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================
+   ENTERPRISE SAAS (PAYFIT-INSPIRED) DESIGN SYSTEM OVERRIDES
+   ========================================================== */
+
+/* 1. Global Border Radius Cap for Cards, Panels, Modals, & Inputs */
+[class*="rounded-"]:not(.rounded-full):not([class*="rounded-full"]):not(.rounded-t-none):not(.rounded-b-none),
+[class*="rounded-["]:not(.rounded-full):not([class*="rounded-full"]) {
+  border-radius: 6px !important;
+}
+
+/* 2. Global Shadow Softening (nearly imperceptible, soft, flat design style) */
+[class*="shadow-"]:not(.shadow-none):not([class*="shadow-none"]),
+[class*="shadow-["] {
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 1px 2px -1px rgba(15, 23, 42, 0.03) !important;
+}
+
+/* 3. Cards & Container Visual Hierarchy */
+.bg-white, 
+[class*="bg-white"],
+.bg-zinc-50\/50,
+.bg-zinc-100\/30 {
+  border-color: transparent !important; /* No border at all */
+}
+
+/* 4. Universal Form Input Refinement */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border: 1px solid #e2e8f0 !important; /* thin, very light neutral gray (slate-200) */
+  border-radius: 6px !important;
+  background-color: #ffffff !important;
+  font-size: 0.875rem !important; /* text-sm */
+  line-height: 1.25rem !important;
+  padding: 8px 12px !important;
+  transition: all 0.15s ease-in-out !important;
+  box-shadow: none !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: var(--theme-primary) !important;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.08) !important; /* Subtle violet focus ring */
+}
+
+/* 5. Universal Refined Data Tables */
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+th {
+  background-color: #f8fafc !important; /* light slate-50 tinted table header */
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  text-align: left;
+  border-bottom: none !important; /* No border */
+  padding: 10px 16px !important;
+}
+
+td {
+  padding: 12px 16px !important; /* Generous whitespace */
+  border-bottom: none !important; /* No border */
+  color: #334155 !important; /* slate-700 */
+  font-size: 13px !important;
+}
+
+/* Prevent cell-by-cell outlines or heavy columns */
+table, tr, td, th {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+/* 6. Universal Button Refinement */
+button:not(.rounded-full):not([class*="rounded-full"]) {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+/* Dark Mode Overrides for SaaS Elements */
+:root.dark [class*="rounded-"]:not(.rounded-full):not([class*="rounded-full"]),
+:root.dark [class*="rounded-["]:not(.rounded-full):not([class*="rounded-full"]) {
+  border-radius: 6px !important;
+}
+
+:root.dark input:not([type="checkbox"]):not([type="radio"]),
+:root.dark select,
+:root.dark textarea {
+  background-color: #1e1e24 !important;
+  border-color: #27272a !important; /* Extremely subtle zinc-800 border */
+  color: #f8fafc !important;
+}
+
+:root.dark input:focus:not([type="checkbox"]):not([type="radio"]),
+:root.dark select:focus,
+:root.dark textarea:focus {
+  border-color: var(--theme-primary) !important;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2) !important;
+}
+
+:root.dark th {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-bottom-color: transparent !important;
+}
+
+:root.dark td {
+  border-bottom-color: transparent !important;
+  color: #e2e8f0 !important;
+}
+
+:root.dark .bg-white,
+:root.dark [class*="bg-white"] {
+  background-color: #1e1e24 !important;
+  border-color: transparent !important;
+}
+
+/* Custom infinite marquee for payment integrations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar utility for a clean minimal layout */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ==========================================================
+   PREMIUM TYPOGRAPHY SYSTEM (GEMINI, APPLE, & LINEAR-INSPIRED)
+   ========================================================== */
+
+/* Elevate headers and sections globally to build a bold, confident, and highly readable look */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", "Inter", var(--font-sans), sans-serif !important;
+  font-weight: 700 !important; /* confident bold weights */
+  letter-spacing: -0.035em !important; /* tighter, sleek tracking */
+  line-height: 1.2 !important; /* generous but structured line-height */
+}
+
+/* Master Display Titles (Apple/Linear-esque HERO styles) */
+h1 {
+  font-size: 2.75rem !important; /* confidence with larger text */
+  font-weight: 800 !important; /* stronger visual impact */
+  letter-spacing: -0.045em !important; /* ultra tight */
+  line-height: 1.15 !important;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 3.5rem !important;
+  }
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 4rem !important;
+  }
+}
+
+/* Section Headings */
+h2 {
+  font-size: 2rem !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.25 !important;
+}
+
+@media (min-width: 640px) {
+  h2 {
+    font-size: 2.25rem !important;
+  }
+}
+
+/* Module & Card Titles */
+h3 {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.3 !important;
+}
+
+h4 {
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.35 !important;
+}
+
+/* Redefining core Tailwind display utilities so they inherit this premium visual feel */
+.font-display {
+  font-family: "Outfit", "Inter", var(--font-sans), sans-serif !important;
+}
+
+/* Override utility classes to support the requested 600-700+ font-weights, tighter tracking and generous line heights across the UI */
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+.font-extrabold, .font-black {
+  font-weight: 800 !important;
+}
+
+.tracking-tight {
+  letter-spacing: -0.03em !important;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.045em !important;
+}
+
+.leading-tight {
+  line-height: 1.2 !important;
+}
+
+.leading-snug {
+  line-height: 1.35 !important;
+}
+
+.leading-relaxed {
+  line-height: 1.625 !important;
+}
+
+.leading-normal {
+  line-height: 1.5 !important;
+}
+
+/* Global body typography */
+body {
+  font-family: "Inter", var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================
+   AUTHENTICATED WORKSPACE COHESIVE LARGER TYPOGRAPHY SCALE
+   ========================================================== */
+
+/* Set the base font-size to a slightly larger 0.9375rem (15px) for the workspace */
+.authenticated-workspace {
+  font-size: 0.9375rem !important; /* slightly larger than standard base for improved readability */
+}
+
+/* Harmoniously scale up element headings to be crisp, modern, and prominent */
+.authenticated-workspace h1 {
+  font-size: 2.0625rem !important; /* ~33px for main titles */
+  letter-spacing: -0.025em !important;
+  line-height: 1.25 !important;
+}
+
+@media (min-width: 768px) {
+  .authenticated-workspace h1 {
+    font-size: 2.4375rem !important; /* ~39px */
+  }
+}
+
+.authenticated-workspace h2 {
+  font-size: 1.625rem !important; /* ~26px */
+  letter-spacing: -0.02em !important;
+  line-height: 1.3 !important;
+}
+
+.authenticated-workspace h3 {
+  font-size: 1.375rem !important; /* ~22px */
+  letter-spacing: -0.015em !important;
+  line-height: 1.35 !important;
+}
+
+.authenticated-workspace h4 {
+  font-size: 1.1875rem !important; /* ~19px */
+  letter-spacing: -0.01em !important;
+  line-height: 1.4 !important;
+}
+
+/* Adjust standard body text, lists, and labels proportionally */
+.authenticated-workspace p,
+.authenticated-workspace li,
+.authenticated-workspace label {
+  font-size: 0.9375rem !important; /* ~15px */
+  letter-spacing: normal !important;
+}
+
+/* Scale up table headers and cells to match the typography scale */
+.authenticated-workspace th {
+  font-size: 12px !important;
+  padding: 11px 18px !important; /* slightly roomier header padding */
+}
+
+.authenticated-workspace td {
+  font-size: 14px !important;
+  padding: 13px 18px !important; /* slightly roomier cell padding */
+}
+
+/* Scale up form inputs, selects, and textareas */
+.authenticated-workspace input:not([type="checkbox"]):not([type="radio"]),
+.authenticated-workspace select,
+.authenticated-workspace textarea {
+  font-size: 0.9375rem !important; /* ~15px */
+  padding: 9px 13px !important; /* slightly increased padding for larger font size */
+}
+
+/* Map utility classes to our new cohesive typography scale */
+.authenticated-workspace .text-xs {
+  font-size: 0.8125rem !important; /* ~13px */
+}
+
+.authenticated-workspace .text-sm {
+  font-size: 0.9375rem !important; /* ~15px */
+}
+
+.authenticated-workspace .text-base {
+  font-size: 1.0625rem !important; /* ~17px */
+}
+
+.authenticated-workspace .text-lg {
+  font-size: 1.1875rem !important; /* ~19px */
+}
+
+.authenticated-workspace .text-xl {
+  font-size: 1.375rem !important; /* ~22px */
+}
+
+.authenticated-workspace .text-2xl {
+  font-size: 1.625rem !important; /* ~26px */
+}
+
+.authenticated-workspace .text-3xl {
+  font-size: 2.0625rem !important; /* ~33px */
+}
+
+.authenticated-workspace .text-4xl {
+  font-size: 2.4375rem !important; /* ~39px */
+}
+
+.authenticated-workspace .text-5xl {
+  font-size: 3.25rem !important; /* ~52px */
+}
+
+.authenticated-workspace .text-6xl {
+  font-size: 4rem !important; /* ~64px */
+}
+
+
+

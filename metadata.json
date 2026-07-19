@@ -1,0 +1,6 @@
+{
+  "name": "Jefara",
+  "description": "Production-ready Payroll, HR, and Employee Financial Services FinTech platform launched in Cameroon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,297 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "An authenticated user profile linked to a company.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "companyId": { "type": "string" },
+        "role": { "type": "string", "enum": ["Owner", "Admin", "HR", "Manager", "Employee"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "companyId", "role"]
+    },
+    "company": {
+      "title": "Company",
+      "description": "A tenant company in the payroll system.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "registrationNumber": { "type": "string" },
+        "country": { "type": "string" },
+        "currency": { "type": "string" },
+        "departments": { "type": "array" },
+        "roles": { "type": "array" },
+        "payrollSettings": { "type": "object" },
+        "accountingSettings": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name"]
+    },
+    "employee": {
+      "title": "Employee",
+      "description": "An employee within a company.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "department": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Archived", "Terminated"] },
+        "joiningDate": { "type": "string", "format": "date" },
+        "terminationDate": { "type": "string", "format": "date" },
+        "terminationReason": { "type": "string" },
+        "basicSalary": { "type": "number" },
+        "bankAccountNumber": { "type": "string" },
+        "bankName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "firstName", "lastName", "basicSalary", "status"]
+    },
+    "payroll_run": {
+      "title": "Payroll Run",
+      "description": "A monthly or custom cycle of payroll processing.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "month": { "type": "string" },
+        "year": { "type": "integer" },
+        "status": { "type": "string", "enum": ["Draft", "Validated", "Approved", "Paid"] },
+        "totalBasic": { "type": "number" },
+        "totalBonuses": { "type": "number" },
+        "totalDeductions": { "type": "number" },
+        "totalNet": { "type": "number" },
+        "processedBy": { "type": "string" },
+        "processedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "month", "year", "status"]
+    },
+    "payslip": {
+      "title": "Payslip",
+      "description": "An individual employee's payslip for a specific payroll run.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "payrollRunId": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "basicSalary": { "type": "number" },
+        "bonuses": { "type": "array" },
+        "deductions": { "type": "array" },
+        "netSalary": { "type": "number" },
+        "month": { "type": "string" },
+        "year": { "type": "integer" },
+        "status": { "type": "string", "enum": ["Draft", "Paid"] }
+      },
+      "required": ["id", "companyId", "payrollRunId", "employeeId", "netSalary"]
+    },
+    "leave_request": {
+      "title": "Leave Request",
+      "description": "An absence or leave request from an employee.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "leaveType": { "type": "string", "enum": ["Annual", "Sick", "Maternity", "Paternity", "Unpaid", "Other"] },
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" },
+        "reason": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Rejected"] },
+        "approvedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "employeeId", "leaveType", "startDate", "endDate", "status"]
+    },
+    "attendance_log": {
+      "title": "Attendance Log",
+      "description": "Clock in/out event for an employee.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "clockIn": { "type": "string" },
+        "clockOut": { "type": "string" },
+        "remote": { "type": "boolean" },
+        "overtimeHours": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "companyId", "employeeId", "date", "clockIn"]
+    },
+    "job_posting": {
+      "title": "Job Posting",
+      "description": "A vacancy advertised by the company.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "title": { "type": "string" },
+        "department": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "salaryRange": { "type": "string" },
+        "status": { "type": "string", "enum": ["Draft", "Active", "Closed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "title", "status"]
+    },
+    "job_application": {
+      "title": "Job Application",
+      "description": "An application submitted for a job posting.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "jobId": { "type": "string" },
+        "jobTitle": { "type": "string" },
+        "candidateName": { "type": "string" },
+        "candidateEmail": { "type": "string" },
+        "candidatePhone": { "type": "string" },
+        "resumeUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["Applied", "Screening", "Interview", "Offered", "Hired", "Rejected"] },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "jobId", "candidateName", "candidateEmail", "status"]
+    },
+    "accounting_entry": {
+      "title": "Accounting Entry",
+      "description": "Journal entries, expenses or department budget transactions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "type": { "type": "string", "enum": ["Journal", "ExpenseClaim", "BudgetAllocation"] },
+        "description": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "department": { "type": "string" },
+        "status": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "type", "description", "amount", "date"]
+    },
+    "financial_service_request": {
+      "title": "Financial Service Request",
+      "description": "Requests for salary advances, loans, or savings transactions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "type": { "type": "string", "enum": ["Salary Advance", "Loan", "Insurance", "Savings"] },
+        "amount": { "type": "number" },
+        "repaymentTermMonths": { "type": "integer" },
+        "monthlyDeduction": { "type": "number" },
+        "purpose": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Active", "Repaid", "Rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "employeeId", "type", "amount", "status"]
+    },
+    "document": {
+      "title": "Document",
+      "description": "Employment contracts, certificates, or digital vault files.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyId": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["Contract", "Certificate", "ID Proof", "Tax", "Payslip", "Other"] },
+        "fileContent": { "type": "string" },
+        "signatureRequired": { "type": "boolean" },
+        "signed": { "type": "boolean" },
+        "signedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "companyId", "name", "category"]
+    },
+    "demo_lead": {
+      "title": "Demo Lead",
+      "description": "Leads captured via the demo booking flow.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "company": { "type": "string" },
+        "phone": { "type": "string" },
+        "companySize": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "company"]
+    }
+  },
+  "firestore": {
+    "users/{uid}": {
+      "schema": "user",
+      "description": "User profiles"
+    },
+    "companies/{companyId}": {
+      "schema": "company",
+      "description": "Company tenants"
+    },
+    "companies/{companyId}/employees/{employeeId}": {
+      "schema": "employee",
+      "description": "Employees in a company"
+    },
+    "companies/{companyId}/payroll_runs/{runId}": {
+      "schema": "payroll_run",
+      "description": "Payroll runs for a company"
+    },
+    "companies/{companyId}/payslips/{payslipId}": {
+      "schema": "payslip",
+      "description": "Individual payslips in a company"
+    },
+    "companies/{companyId}/leave_requests/{requestId}": {
+      "schema": "leave_request",
+      "description": "Leave requests in a company"
+    },
+    "companies/{companyId}/attendance_logs/{logId}": {
+      "schema": "attendance_log",
+      "description": "Attendance logs in a company"
+    },
+    "companies/{companyId}/job_postings/{postId}": {
+      "schema": "job_posting",
+      "description": "Job postings in a company"
+    },
+    "companies/{companyId}/job_applications/{applicationId}": {
+      "schema": "job_application",
+      "description": "Job applications in a company"
+    },
+    "companies/{companyId}/accounting_entries/{entryId}": {
+      "schema": "accounting_entry",
+      "description": "Accounting and ledger entries"
+    },
+    "companies/{companyId}/financial_service_requests/{requestId}": {
+      "schema": "financial_service_request",
+      "description": "Advances, loans and employee savings"
+    },
+    "companies/{companyId}/documents/{docId}": {
+      "schema": "document",
+      "description": "Documents, contracts and digital vault files"
+    },
+    "demo_leads/{leadId}": {
+      "schema": "demo_lead",
+      "description": "Lead captures"
+    }
+  }
+}
